@@ -1,0 +1,58 @@
+{% extends 'vetoffice/base.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'vetoffice/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <h2> Hi Dr. {{name|upper }}!</h2>
+    <div>
+    </div>
+    <p>Here is the current list of patients:</p>
+    <!-- Put the loop below here! -->
+
+
+    <table>
+        <thead>
+            <th>
+                <tr>
+                    <td>
+                        Pet name
+                    </td>
+                    <td>
+                        Animal type
+                    </td>
+                    <td>
+                        Pet description
+                    </td>
+                </tr>
+            </th>
+        </thead>
+        <tbody>
+            {% for pet in pets %}
+            <tr>
+                <td>
+                    {{pet.petname}}
+                </td>
+                <td>
+                    {{pet.animal_type}}
+                </td>
+                <td>
+                    {{pet.description|truncatewords_html:2}}
+                </td>
+                <td>
+                    <a href="{% url 'detail' pet.petname|slugify %}">Detalles</a>
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+
+{% endblock %}

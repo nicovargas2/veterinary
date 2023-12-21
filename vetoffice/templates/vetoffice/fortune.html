@@ -1,0 +1,12 @@
+{% extends 'vetoffice/base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'vetoffice/style.css' %}">
+{% endblock %}
+
+{% block content %}
+        <h2>Here is your fortune:</h2>
+        <p>{{fortune}}</p>
+{% endblock %}

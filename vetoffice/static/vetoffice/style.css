@@ -1,0 +1,16 @@
+body {
+    text-align: center;
+}
+
+h2 {
+    color: blue;
+}
+
+p {
+    color: red;
+}
+
+.tabla {
+    text-align: left;
+    background-color: aqua;
+}

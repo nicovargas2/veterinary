@@ -1,0 +1,1 @@
+Aplicacion creada en base a conceptos que estoy estudiando en profundidad desde Codecademy

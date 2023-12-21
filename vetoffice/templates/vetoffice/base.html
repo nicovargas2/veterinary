@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vet office</title>
+    {% block head %}
+
+    {% endblock %}
+</head>
+
+<body>
+    <h1>Welcome to Vet Office!</h1>
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <hr>
+        <div>
+            <a href={% url "fortune" %}>Fortune</a><span>&nbsp;</span>
+            <a href={% url "home" %}>Home</a>
+        </div>
+    </footer>
+</body>
+
+{% block content2 %}
+<!--This is because not everything page-specific will necessarily go in the body.-->
+{% endblock %}
+
+</html>
