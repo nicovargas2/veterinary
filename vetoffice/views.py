@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 import random
+from vetoffice.models import Owner, Patient
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 
 fortuneList = [
     "Do not be afraid of competition.",
@@ -92,3 +96,75 @@ def detail(request, petname):
             description = animal["description"]
     context = {"petname": pet, "description": description}
     return render(request, "vetoffice/detail.html", context)
+
+
+def pets_by_user(request, ownerId):
+    # buscar asi con id o por nombre Y apellido
+    owner_searched = Owner.objects.get(owner_id=ownerId)
+    pets = Patient.objects.get(owner=owner_searched)
+    context = {"pets": pets}
+    return render(request, "vetoffice/pets.html", context)
+
+
+class OwnerList(ListView):
+    model = Owner
+    template_name = "vetoffice/owner_list.html"
+
+
+class OwnerCreate(CreateView):
+    model = Owner
+    template_name = "vetoffice/owner_create_form.html"
+    fields = [
+        "first_name",
+        "last_name",
+        "phone",
+    ]
+
+
+class OwnerUpdate(UpdateView):
+    model = Owner
+    template_name = "vetoffice/owner_update_form.html"
+    fields = [
+        "first_name",
+        "last_name",
+        "phone",
+    ]
+
+
+class OwnerDelete(DeleteView):
+    model = Owner
+    template_name = "vetoffice/owner_delete_form.html"
+
+
+class PatientList(ListView):
+    model = Patient
+    template_name = "vetoffice/patient_list.html"
+
+
+class PatientCreate(CreateView):
+    model = Patient
+    template_name = "vetoffice/patient_create_form.html"
+    fields = [
+        "animal_type",
+        "breed",
+        "pet_name",
+        "age",
+        "owner",
+    ]
+
+
+class PatientUpdate(UpdateView):
+    model = Patient
+    template_name = "vetoffice/patient_update_form.html"
+    fields = [
+        "animal_type",
+        "breed",
+        "pet_name",
+        "age",
+        "owner",
+    ]
+
+
+class PatientDelete(DeleteView):
+    model = Patient
+    template_name = "vetoffice/patient_delete_form.html"
