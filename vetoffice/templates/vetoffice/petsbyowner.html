@@ -1,0 +1,15 @@
+{% extends 'vetoffice/base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'vetoffice/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for p in pets %}
+  <li> {p.pet_name}
+  </li>  
+</ul>
+{% endblock %}
